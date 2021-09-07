@@ -163,7 +163,7 @@ d3.csv('./data/Iris.csv', d3.autoType) // https://github.com/d3/d3-dsv#autoType
           && y1 > y[j](d[columns[j]]));
         console.log("selected:",selected);
         cleanSvgChart();
-        drawchart(selected);
+        drawChart(selected);
       }
 
       // If the brush is empty, select all circles.
@@ -181,7 +181,7 @@ function cleanSvgChart(){
   d3.select("#svg-chart").selectAll('*').remove();
 }
 
-function drawchart(items){
+function drawChart(items){
   let margin = {top:20, right:20, bottom:30, left:25}
   let width = 390
   let height = 400
