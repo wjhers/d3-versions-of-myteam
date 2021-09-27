@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>D3 tourial</title>
+	<script src="http://d3js.org/d3.v3.min.js"></script>
+</head>
+<body>
+	
+	<script>
+
+		var width = 500
+		var height = 500
+		var padding = 50
+
+		d3.csv("./ages.csv",function(data){
+
+			var map = data.map(function(d){return parseInt(d.age);})
+			console.log(map)
+
+			var histogram = d3.layout.histogram()
+				.bins(7)
+				(map)
+
+			var y = d3.scale.linear()
+				.domain([0,d3.max(histogram.map(function(d){return d.length;}))])
+				.range([0,height])
+
+			var x = d3.scale.linear()
+				.domain([0, d3.max(map)])
+				.range([0, width])
+
+			var xAxis = d3.svg.axis()
+				.scale(x)
+				// .ticks(5)
+				.orient("bottom")
+
+			var canvas = d3.select("body").append("svg")
+				.attr("width",width+padding)
+				.attr("height",height + padding)
+				.append("g")
+				.attr("transform","translate(20,20)")
+
+			canvas.append("g")
+				.attr("transform","translate(0,"+height+")")
+				.call(xAxis)
+
+			var bars = canvas.selectAll(".bar")
+				.data(histogram)
+				.enter()
+					.append("g")
+					.attr("class","bar")
+
+			bars.append("rect")
+				.attr("x",function(d){return x(d.x);})
+				.attr("y",function(d){return height- y(d.y);})
+				.attr("width",function(d){return x(d.dx);})
+				.attr("height",function(d){return y(d.y);})
+				.attr("fill","steelblue")
+				.attr("stroke","#fff") //distinguish different blocks
+
+			bars.append("text")
+				.attr("x",function(d){return x(d.x);})
+				.attr("y",function(d){return 500 - y(d.y);})
+				.attr("dy","20px")
+				.attr("dx",function(d){return x(d.dx)/2;})
+				.attr("fill","#fff")
+				.attr("text-anchor","middle")
+				.text(function(d){return d.y;})
+
+		})
+	</script>
+</body>
+</html>
