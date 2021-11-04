@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <title>Render Treemap</title>
+        <style type="text/css">
+            #Container {
+               position: absolute;
+            }
+            #header {
+                width:100%;
+                height:50px;
+                border:1px rgb(8, 8, 8) solid;
+                text-align:center;
+            }
+            #main {
+            	position: absolute;
+                width:100%;
+                height:100%;
+                border:1px rgb(8, 8, 8) solid;
+            }
+            #treemap-canvas {
+            	position: absolute;
+            	width: 100%;
+            	height: 100%;
+            }
+            .root {
+                stroke: #444444;
+                fill: none;
+            }
+            #agent-0 {
+                fill: steelblue;
+            }
+            #agent-1 {
+                fill: red;
+            }
+            #agent-2 {
+                fill: orange;
+            }
+            #agent-3 {
+                fill: black;
+            }
+            #agent-4 {
+                fill: purple;
+            }
+            .time-step-text {
+                font-size: 30px;
+            }
+            #control {
+                width: 80px;
+                height: 40px;
+            }
+            #path_root {
+                fill: none;
+                stroke: steelblue;
+            }
+            #path0 {
+                fill: none;
+                stroke: black;
+            }
+            #path1 {
+                fill: none;
+                stroke: red;
+            }
+            #path2 {
+                fill: none;
+                stroke: blue;
+            }
+            #path3 {
+                fill: none;
+                stroke: orange;
+            }
+            #path4 {
+                fill: none;
+                stroke: green;
+            }
+        </style>
+    </head>
+
+    <body style="margin: 0; width: 100vw; height: 100vh; overflow:	hidden;">
+
+        <div id="container">
+            <div id="main">
+                <button id="control" onclick="toggle()">control</button>
+                <svg id="treemap-canvas" preserveAspectRatio="xMidYMin meet"></svg>
+            </div>
+        </div>
+		
+		<script type="text/javascript" src="./js/lib/jquery/jquery-3.2.1.min.js"></script>
+        <script src="./js/lib/d3/d3-v5.12.0/d3.min.js"></script>
+        <script src="./js/render-treemap.js"></script>
+
+    </body>
+</html>
